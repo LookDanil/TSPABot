@@ -6,6 +6,7 @@ from publication_activity.documentations.article import article_print
 from publication_activity.documentations.documentation import documentation
 from publication_activity.documentations.monografy import monografy
 from publication_activity.documentations.statement import statement
+from publication_activity.prices import prices
 from redoced import redoced
 from user_state import user_state
 
@@ -109,5 +110,10 @@ def hundler_monografy(message):
 @bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'соглашениенастатью')
 def hundler_article(message):
     article_print(bot,message)
+
+@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'расчётвыплаты')
+def hundler_prices(message):
+    prices(bot,message)
+
 
 bot.polling(none_stop=True)
