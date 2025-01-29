@@ -1,4 +1,11 @@
 import telebot
+
+from publication_activity.admission import admission
+
+from publication_activity.documentations.article import article_print
+from publication_activity.documentations.documentation import documentation
+from publication_activity.documentations.monografy import monografy
+from publication_activity.documentations.statement import statement
 from redoced import redoced
 from user_state import user_state
 
@@ -82,5 +89,25 @@ def handle_template(message):
 @bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'актуальныеконференции')
 def handle_conference(message):
     conference(bot, message)
+
+@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'порядокприема')
+def handler_admission(message):
+    admission(bot,message)
+
+@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'документация')
+def hundler_documentation(message):
+    documentation(bot, message)
+
+@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'заявлениенарегистрацию')
+def hundler_statement(message):
+    statement(bot,message)
+
+@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'соглашениенамонографию')
+def hundler_monografy(message):
+    monografy(bot,message)
+
+@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'соглашениенастатью')
+def hundler_article(message):
+    article_print(bot,message)
 
 bot.polling(none_stop=True)

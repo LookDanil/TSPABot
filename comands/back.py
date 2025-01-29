@@ -13,6 +13,7 @@ def back(bot,message):
         'problems':journals,
         'InfoAurot_problem':problems,
         'journalsList': public_active,
+        'documentations':public_active,
         # добавьте другие состояния и функции по мере необходимости
     }
     if user_state['previous_state'] is not None:
