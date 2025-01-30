@@ -7,6 +7,7 @@ from publication_activity.documentations.documentation import documentation
 from publication_activity.documentations.monografy import monografy
 from publication_activity.documentations.statement import statement
 from publication_activity.prices import prices
+from publication_activity.regulations import regulation
 from redoced import redoced
 from user_state import user_state
 
@@ -115,5 +116,8 @@ def hundler_article(message):
 def hundler_prices(message):
     prices(bot,message)
 
+@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'регламент')
+def hundler_regulation(message):
+    regulation(bot,message)
 
 bot.polling(none_stop=True)
