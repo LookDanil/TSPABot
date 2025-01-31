@@ -1,10 +1,13 @@
 import telebot
 
 from publication_activity.admission import admission
+from publication_activity.calculation_payment.calc_paymentMain import typeScienceWork
+from publication_activity.calculation_payment.monografy import monografy
+from publication_activity.calculation_payment.science_article import science_article
 
 from publication_activity.documentations.article import article_print
 from publication_activity.documentations.documentation import documentation
-from publication_activity.documentations.monografy import monografy
+from publication_activity.documentations.monografy_doc import monografy_doc
 from publication_activity.documentations.statement import statement
 from publication_activity.prices import prices
 from publication_activity.regulations import regulation
@@ -104,9 +107,10 @@ def hundler_documentation(message):
 def hundler_statement(message):
     statement(bot,message)
 
-@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'соглашениенамонографию')
+
+@bot.message_handler(func=lambda message: message.text.lower().strip() == 'соглашениенамонографию')
 def hundler_monografy(message):
-    monografy(bot,message)
+    monografy_doc(bot,message)
 
 @bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'соглашениенастатью')
 def hundler_article(message):
@@ -115,9 +119,18 @@ def hundler_article(message):
 @bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'расчётвыплаты')
 def hundler_prices(message):
     prices(bot,message)
+    typeScienceWork(bot,message)
 
 @bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'регламент')
 def hundler_regulation(message):
     regulation(bot,message)
+
+@bot.message_handler(func=lambda message: message.text.lower().strip() == 'монография')
+def hundler_monografy(message):
+    monografy(bot,message)
+
+@bot.message_handler(func=lambda message: message.text.lower().replace(' ', '') == 'научнаястатья')
+def hundler_science_article(message):
+    science_article(bot,message)
 
 bot.polling(none_stop=True)
